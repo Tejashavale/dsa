@@ -44,18 +44,19 @@ console.log("twoSumIndex: ", twoSumIndex(brr, target2));
 // Two Sum: With constant space complexity and n log n time complexity
 
 const twoSumConstantSpace = (arr, target) => {
-    arr = arr.sort((a, b) => a - b);
-    let i = 0; j = arr.length - 1;
+    newArr = arr.map((val, index) => [val, index]);
+    newArr.sort((a, b) => a[0] - b[0]);
+    let i = 0; j = newArr.length - 1;
     while (i < j) {
-        if (arr[i] + arr[j] === target) {
-            return "YES";
-        } else if (arr[i] + arr[j] > target) {
+        if (newArr[i][0] + newArr[j][0] === target) {
+            return [newArr[i][1], newArr[j][1]];
+        } else if (newArr[i][0] + newArr[j][0] > target) {
             j--;
         } else {
             i++;
         }
     }
-    return "NO"
+    return [-1, -1];
 }
 
 
