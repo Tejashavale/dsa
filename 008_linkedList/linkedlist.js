@@ -80,6 +80,53 @@ class LinkedList {
         temp.next = newNode;
     }
 
+    removeHead() {
+        let count = this.countNodes();
+        if (count === 0) {
+            console.log("List is empty");
+            return;
+        }
+        this.head = this.head.next;
+    }
+
+    removeLast() {
+        let count = this.countNodes();
+        if (count === 0) {
+            console.log("List is empty");
+            return;
+        }
+        let index = 0;
+        let temp = this.head;
+        while (index < count - 2) {
+            temp = temp.next;
+            index++;
+        }
+        temp.next = null;
+    }
+
+    removeNodeAtIndex(index) {
+        let count = this.countNodes();
+        if (index < 0 || index >= count) {
+            console.error("Invalid index to remove");
+            return
+        }
+        if (index === 0) {
+            this.removeHead();
+            return;
+        }
+        if (index === count - 1) {
+            this.removeLast();
+            return;
+        }
+        let ind = 0;
+        let temp = this.head;
+        while (ind < index - 1) {
+            temp = temp.next;
+            ind++;
+        }
+        temp.next = temp.next.next;
+    }
+
 }
 
 ll = new LinkedList();
@@ -93,3 +140,13 @@ ll.addNodeAtIndex(12, 4);
 ll.addNodeAtIndex(7, 0);
 ll.addNodeAtIndex(15, ll.countNodes());
 console.log("Count: ", ll.countNodes());
+ll.displayLinkedList();
+ll.removeHead();
+ll.removeHead();
+ll.removeHead();
+ll.removeHead();
+ll.displayLinkedList();
+ll.removeLast();
+ll.displayLinkedList();
+ll.removeNodeAtIndex(2);
+ll.displayLinkedList();
