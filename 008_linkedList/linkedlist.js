@@ -127,6 +127,24 @@ class LinkedList {
         temp.next = temp.next.next;
     }
 
+    searchData(data) {
+        let count = this.countNodes();
+        if (count === 0) {
+            console.log("List is empty");
+            return;
+        }
+        let ind = 0;
+        let temp = this.head;
+        while(ind < count) {
+            if (temp.data === data) {
+                console.log(`${data} found at index: ${ind}`)
+                return;
+            }
+            temp = temp.next;
+            ind++;
+        }
+        console.log(`${data} not found.`);
+    }
 }
 
 ll = new LinkedList();
@@ -140,6 +158,8 @@ ll.addNodeAtIndex(12, 4);
 ll.addNodeAtIndex(7, 0);
 ll.addNodeAtIndex(15, ll.countNodes());
 console.log("Count: ", ll.countNodes());
+ll.searchData(12);
+ll.searchData(70);
 ll.displayLinkedList();
 ll.removeHead();
 ll.removeHead();
