@@ -88,6 +88,36 @@ class DoubleLinkedList {
         newTail.next = null;
         this.tail = newTail;
     }
+
+    reverseList() {
+        // If list is empty
+        if (!this.head) {
+            console.log("List is empty.");
+            return;
+        }
+
+        // If list contains only one node
+        if (!this.head.next) {
+            return this.head;
+        }
+
+        let temp = this.head;
+
+        while (temp) {
+            let next = temp.next;
+
+            temp.next = temp.prev;
+            temp.prev = next;
+
+            temp = next;
+        }
+
+        let oldHead = this.head;
+        this.head = this.tail;
+        this.tail = oldHead;
+
+        return this.head;
+    }
 }
 
 dll = new DoubleLinkedList();
@@ -103,4 +133,6 @@ dll.displayLinkedList();
 dll.removeHead();
 dll.displayLinkedList();
 dll.removeTail();
+dll.displayLinkedList();
+dll.reverseList();
 dll.displayLinkedList();
