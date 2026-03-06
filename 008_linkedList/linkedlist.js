@@ -135,7 +135,7 @@ class LinkedList {
         }
         let ind = 0;
         let temp = this.head;
-        while(ind < count) {
+        while (ind < count) {
             if (temp.data === data) {
                 console.log(`${data} found at index: ${ind}`)
                 return;
@@ -144,6 +144,18 @@ class LinkedList {
             ind++;
         }
         console.log(`${data} not found.`);
+    }
+
+    reverseList() {
+        let prev = null;
+        let curr = this.head;
+        while (curr) {
+            let next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        this.head = prev;
     }
 }
 
@@ -160,6 +172,8 @@ ll.addNodeAtIndex(15, ll.countNodes());
 console.log("Count: ", ll.countNodes());
 ll.searchData(12);
 ll.searchData(70);
+ll.displayLinkedList();
+ll.reverseList();
 ll.displayLinkedList();
 ll.removeHead();
 ll.removeHead();
