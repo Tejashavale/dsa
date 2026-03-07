@@ -157,6 +157,28 @@ class LinkedList {
         }
         this.head = prev;
     }
+
+    hasCycleUsingMap() {
+        let map = new Map();
+        let temp = this.head;
+        while (temp) {
+            if (map.has(temp)) return true;
+            map.set(temp);
+            temp = temp.next;
+        }
+        return false;
+    };
+
+    hasCycleOptimal() {
+        let slow = this.head, fast = this.head;
+        while (fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (fast == slow) return true;
+        }
+        return false;
+    }
+
 }
 
 ll = new LinkedList();
