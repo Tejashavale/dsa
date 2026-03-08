@@ -200,6 +200,22 @@ class LinkedList {
         }
         return null;
     };
+
+    middleOfLinkedList() {
+        /*
+        Given the head of a singly linked list, return the middle node of the linked list.
+        If there are two middle nodes, return the second middle node.
+        */
+        let slow = this.head;
+        let fast = this.head;
+
+        while (fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
 }
 
 ll = new LinkedList();
@@ -227,3 +243,4 @@ ll.removeLast();
 ll.displayLinkedList();
 ll.removeNodeAtIndex(2);
 ll.displayLinkedList();
+ll.middleOfLinkedList();
