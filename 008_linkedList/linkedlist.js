@@ -179,6 +179,27 @@ class LinkedList {
         return false;
     }
 
+    startingPointOfLoop() {
+        let slow = this.head, fast = this.head;
+        let cyclePresent = false;
+        while (fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                cyclePresent = true;
+                break;
+            }
+        }
+        if (cyclePresent) {
+            let fast = this.head;
+            while (slow) {
+                if (slow == fast) return slow;
+                slow = slow.next;
+                fast = fast.next;
+            }
+        }
+        return null;
+    };
 }
 
 ll = new LinkedList();
