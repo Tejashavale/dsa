@@ -216,6 +216,37 @@ class LinkedList {
 
         return slow;
     }
+
+    isPalindrome() {
+        if (!this.head || !this.head.next) return true;
+        let slow = this.head;
+        let fast = this.head;
+
+        while (fast.next && fast.next.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        let mid = slow;
+        let prev = null;
+        fast = mid.next;
+
+        while (fast) {
+            let next = fast.next;
+            fast.next = prev;
+            prev = fast;
+            fast = next;
+        }
+        slow.next = prev;
+        fast = prev;
+        slow = this.head;
+        while (fast) {
+            if (slow.val !== fast.val) return false;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return true;
+    }
 }
 
 ll = new LinkedList();
