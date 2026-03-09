@@ -219,6 +219,8 @@ class LinkedList {
 
     isPalindrome() {
         if (!this.head || !this.head.next) return true;
+
+        // Find mid
         let slow = this.head;
         let fast = this.head;
 
@@ -227,6 +229,8 @@ class LinkedList {
             fast = fast.next.next;
         }
         let mid = slow;
+
+        // Reverse 2nd half
         let prev = null;
         fast = mid.next;
 
@@ -236,16 +240,31 @@ class LinkedList {
             prev = fast;
             fast = next;
         }
-        slow.next = prev;
+        mid.next = prev;
+
+        // Check palindrome
         fast = prev;
         slow = this.head;
+        let isListPalindrome = true;
         while (fast) {
-            if (slow.val !== fast.val) return false;
+            if (slow.data !== fast.data) isListPalindrome = false;
             slow = slow.next;
             fast = fast.next;
         }
 
-        return true;
+        // Reverse 2nd half again
+        prev = null;
+        fast = mid.next;
+
+        while (fast) {
+            let next = fast.next;
+            fast.next = prev;
+            prev = fast;
+            fast = next;
+        }
+        mid.next = prev;
+
+        return isListPalindrome;
     }
 }
 
@@ -275,3 +294,5 @@ ll.displayLinkedList();
 ll.removeNodeAtIndex(2);
 ll.displayLinkedList();
 ll.middleOfLinkedList();
+console.log("isPalindrome: ", ll.isPalindrome());
+ll.displayLinkedList();
