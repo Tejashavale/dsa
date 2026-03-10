@@ -266,6 +266,21 @@ class LinkedList {
 
         return isListPalindrome;
     }
+
+    removeNthFromEnd(n) {
+        let dummy = { next: head };
+        let ahead = dummy, behind = dummy;
+        for (let i = 0; i <= n; i++) {
+            ahead = ahead.next;
+        }
+
+        while (ahead) {
+            behind = behind.next;
+            ahead = ahead.next;
+        }
+        behind.next = behind.next.next;
+        return dummy.next;
+    };
 }
 
 ll = new LinkedList();
