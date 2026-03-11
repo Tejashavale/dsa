@@ -281,6 +281,21 @@ class LinkedList {
         behind.next = behind.next.next;
         return dummy.next;
     };
+
+    removeMiddleNode() {
+        if (!this.head || !this.head.next) {
+            return null;
+        }
+
+        let slow = this.head, fast = this.head.next.next;
+
+        while (fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow.next = slow.next.next;
+        return this.head;
+    };
 }
 
 ll = new LinkedList();
